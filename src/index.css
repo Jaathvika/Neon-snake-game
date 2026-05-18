@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-pixel: 'VT323', monospace;
+  --font-display: 'Press Start 2P', monospace;
+}
+
+@layer utilities {
+  .glitch-anim {
+    animation: glitch 1s linear infinite;
+  }
+  .glitch-anim-slow {
+    animation: glitch 3s linear infinite;
+  }
+  .tearing {
+    animation: tear 2s ease-in-out infinite;
+  }
+  .noise-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 50;
+  }
+}
+
+@keyframes glitch {
+  2%, 64% { transform: translate(2px, 0) skew(0deg); }
+  4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+  62% { transform: translate(0, 0) skew(5deg); }
+}
+
+@keyframes tear {
+  0%, 100% { transform: translateX(0); }
+  5% { transform: translateX(-5px); }
+  10% { transform: translateX(5px); }
+  15% { transform: translateX(0); }
+}
